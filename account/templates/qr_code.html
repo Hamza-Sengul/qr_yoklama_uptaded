@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<button id="generateQR">QR Kodu Oluştur</button>
+<div id="qrcode"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@latest"></script>
+
+<script>
+    document.getElementById('generateQR').addEventListener('click', function() {
+    // Burada QR kodunu oluşturmak için kullanılacak veriyi alın
+    var inputData = "Veri"; // Örnek olarak sabit bir veri kullandım, bu veriyi kullanıcıdan alabilirsiniz.
+
+    // QR kodunu oluştur
+    var qrCodeDiv = document.getElementById('qrcode');
+    qrCodeDiv.innerHTML = ''; // Önceki QR kodunu temizle
+    new QRCode(qrCodeDiv, inputData);
+});
+</script>
+{% endblock %}

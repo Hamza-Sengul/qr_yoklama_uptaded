@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Akademisyen Girişi</h2>
+    <form class="p-5">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="mail" class="form-label">Mail:</label>
+            <input type="email" class="form-control" id="mail" name="mail">
+        </div>
+        <div class="mb-3">
+            <label for="sifre" class="form-label">Şifre:</label>
+            <input type="password" class="form-control" id="sifre" name="sifre">
+        </div>
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% for name, qr_data_list in grouped_qrdata.items %}
+    <h2>Yoklama Listesi: {{ name }}</h2> 
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>QR Kodu</th>
+                    <th>Öğrenci Numarası</th>
+                    <th>Oluşturulma Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for qr_data in qr_data_list %}
+                <tr>
+                    <td>{{ qr_data.qr_data }}</td>
+                    <td>{{ qr_data.okul_numarasi }}</td>
+                    <td>{{ qr_data.created_at|date:"d/m/Y H:i:s" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <br> <br>
+{% endfor %}
+{% endblock %}

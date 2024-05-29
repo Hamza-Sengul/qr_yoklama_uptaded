@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="menu-icon" onclick="toggleMenu()">
+      <span></span> 
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-content" id="menuContent">
+      <ul>
+        <li><a href="#">Haberler</a></li>
+        <li><a href="#">Duyurular</a></li>
+        <li><a href="#">Gizlilik ve Güvenlik</a></li>
+        <li><a href="#">Sıkça Sorulan Sorular</a></li>
+      </ul>
+    </div>
+    <div class="logo">
+      <img src="{% static 'img/tarsusuni_logo.jpg' %}" alt="">
+    </div>
+    <div class="footer">
+      <p>TARSUS ÜNİVERSİTESİ YOKLAMA SİSTEMİ</p>
+    </div>
+    <div class="login-options">
+      <h2>Giriş Seçenekleri</h2>
+      <ul>
+        <li><a class="oval-button" href="{% url 'login' %}">Öğrenci Girişi</a></li>
+        <!-- <li><a class="oval-button" href="#">Yönetici Girişi</a></li> -->
+        <li><a class="oval-button" href="{% url 'akademisyen_giris' %}">Öğretim Görevlisi Girişi</a></li>
+        <li><a class="oval-button" href="{% url 'register' %}">Kayıt Ol</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      var menuContent = document.getElementById("menuContent");
+      menuContent.classList.toggle("show-menu");
+    }
+  </script>
+
+
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+ 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.menu-icon {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  margin-bottom: 5px;
+}
+
+.logo {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.logo img {
+  border-radius: 15px;
+}
+.footer {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-weight: 550;
+  color: black;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #000;
+}
+
+.login-options {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+}
+
+.login-options h2 {
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.oval-button {
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.oval-button:hover {
+  background-color: #0056b3;
+}
+
+.menu-content {
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  top: 54px;
+  width: 250px;
+  height: 220px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: rgb(33,65,106);
+}
+.menu-content a {
+  color: #fff;
+  text-decoration: none;
+}
+.show-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  </style>
+{% endblock %}
+

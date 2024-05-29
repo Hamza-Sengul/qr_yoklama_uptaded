@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-1 text-center mt-5">Akademisyen Paneli</h1>
+            <h2 class="text-center">Hoşgeldiniz, {{ akademisyen.kullanici_adi }}</h2>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <form action="{% url 'cikis_yap' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-lg btn-block">Çıkış Yap</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <form id="qrForm">
+                <label for="qrData">QR Kod Verisi:</label>
+                <input type="text" id="qrData" name="qrData" class="form-control mb-3">
+                <button type="button" id="generateQR" class="btn btn-primary btn-lg btn-block">QR Kodu Oluştur</button>
+            </form>
+            <div id="qrcode" class="mt-3"></div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3 text-center">
+            <a href="{% url 'yoklama' %}" class="btn btn-info">Detaylar</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
+<script>
+    document.getElementById('generateQR').addEventListener('click', function() {
+        var inputData = document.getElementById('qrData').value;
+        var qrCodeDiv = document.getElementById('qrcode');
+        qrCodeDiv.innerHTML = ''; // Önceki QR kodunu temizle
+
+        var qr = qrcode(0, 'M');
+        qr.addData(inputData);
+        qr.make();
+
+        var qrCodeImg = qr.createImgTag();
+        qrCodeDiv.innerHTML = qrCodeImg;
+
+        // Oluşturulan QR kodunun boyutunu artırmak için CSS kullan
+        var imgElement = qrCodeDiv.querySelector('img');
+        imgElement.style.width = "250px"; // Örneğin, genişliği 300 piksel yapabilirsiniz
+        imgElement.style.height = "250px"; // Örneğin, yüksekliği de 300 piksel yapabilirsiniz
+    });
+</script>
+{% endblock %}
