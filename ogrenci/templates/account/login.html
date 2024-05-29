@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+<h1 style="margin-top: 20px;">Giriş Yap</h1>
+
+
+<div class="container mt-3">
+
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Okul Numarası</label>
+            <input type="text" name="username" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Şifre</label>
+            <input type="password" name="password" class="form-control">
+        </div>
+
+        <input type="submit" value="login" class="btn btn-primary">
+    </form>
+
+
+</div>
+
+
+
+{% endblock %}
